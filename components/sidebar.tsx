@@ -32,15 +32,16 @@ export default function Sidebar({
         </div>
       ))}
 
-      <div className="pt-4 space-y-2">
+      <div className="flex flex-col pt-4 space-y-2">
+        <h2 className="font-bold mb-2">Přidat novou sekci</h2>
         <Button variant="outline" size="sm" onClick={() => onAdd("text")}>
-          + Text
+          Textový blok
         </Button>
         <Button variant="outline" size="sm" onClick={() => onAdd("workshops")}>
-          + Víkendovky
+          Víkendovky
         </Button>
         <Button variant="outline" size="sm" onClick={() => onAdd("imageText")}>
-          + Obrázek+Text
+          Blok s obrázkem a textem
         </Button>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { facilityType } from "@/data/facilities";
+
 // types/newsletter.ts
 export type Newsletter = {
   id: string;
@@ -19,16 +21,13 @@ export type Section =
       id: string;
       type: "workshops";
       heading: string;
-      blocks: Array<{
+      workshops: Array<{
         id: string;
+        place: facilityType;
+
         title: string;
-        color: string;
-        workshops: Array<{
-          id: string;
-          title: string;
-          description: string;
-          time: string;
-        }>;
+        description: string;
+        time: string;
       }>;
       cta?: { label: string; href: string };
     }

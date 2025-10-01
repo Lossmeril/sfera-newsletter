@@ -25,7 +25,7 @@ export default function NewsletterEditor() {
       type === "text"
         ? { id: uuid(), type, heading: "Nová sekce", body: "" }
         : type === "workshops"
-        ? { id: uuid(), type, heading: "Víkendovky", blocks: [] }
+        ? { id: uuid(), type, heading: "Víkendovky", workshops: [] }
         : {
             id: uuid(),
             type,
@@ -76,7 +76,10 @@ export default function NewsletterEditor() {
             onChange={(patch) => updateSection(selectedId, patch)}
           />
         ) : (
-          <p className="text-gray-500">Vyberte sekci pro úpravu</p>
+          <p className="text-gray-500">
+            V newsletteru zatím není žádná sekce. Přidejte nějakou, abyste ji
+            mohli upravovat :)
+          </p>
         )}
       </div>
       <PreviewPane newsletter={newsletter} />
