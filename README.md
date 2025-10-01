@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 Sférický newsletter builder
 
-## Getting Started
+Tento projekt je interní nástroj pro tvorbu a rozesílání newsletterů organizace [**SFÉRA Pardubice**](https://sferapardubice.eu).  
+Poskytuje webové rozhraní, ve kterém lze sestavovat newslettery z připravených sekcí (text, obrázek+text, víkendovky), spravovat obsah a ihned zobrazit náhled výsledného e-mailu v šabloně.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Funkce
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 📑 **Sekce newsletteru**
+  - Textová sekce s nadpisem, obsahem a tlačítkem (CTA).
+  - Sekce **Víkendovky** s možností přidávat bloky (např. dílny) a do nich jednotlivé workshopy.
+  - Obrázek + textová sekce s možností přidat tlačítko.
+- 🖋️ **Editor** pro úpravu obsahu sekcí (React + shadcn/ui komponenty).
+- 👀 **Živý náhled** newsletteru v reálné HTML e-mailové šabloně.
+- 📤 (Plán) možnost odeslat newsletter přes **Office 365 (OAuth)** na vybraný mailing list.
+- 💾 (Plán) ukládání draftů a historie bez databáze (např. do JSON souborů na serveru nebo Git repozitáře).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Použitý stack
 
-## Learn More
+- [Next.js (App Router)](https://nextjs.org/) – frontendová aplikace
+- [React](https://react.dev/) – komponentový systém
+- [Tailwind CSS](https://tailwindcss.com/) – stylování
+- [shadcn/ui](https://ui.shadcn.com/) – UI komponenty
+- [uuid](https://www.npmjs.com/package/uuid) – generování ID
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 Plánovaný vývoj
+- [ ] Změna názvu, data newsletteru
+- [ ] Změna grafických prvků
+- [ ] Možnost vkládání data akcí
+- [ ] EmDash copy button
+- [ ] Validace dat a časů podle grafického manuálu
+- [ ] Validace data akcí oproti současnému času
+- [ ] Export do JSON formátu a jeho načtení
+- [ ] Napojení na OAuth Office 365
+- [ ] Načítání maillistu z .csv
