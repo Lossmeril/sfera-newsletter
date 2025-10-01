@@ -61,6 +61,29 @@ export default function NewsletterEditor() {
     });
   };
 
+  const removeSection = (id: string) => {
+    setNewsletter({
+      ...newsletter,
+      sections: newsletter.sections.filter((s) => s.id !== id),
+    });
+    if (selectedId === id) {
+      setSelectedId(null);
+    }
+  };
+
+  const moveSection = (id: string, direction: "up" | "down") => {
+    const index = newsletter.sections.findIndex((s) => s.id === id);
+    if (index === -1) return;
+    const newIndex = direction === "up" ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= newsletter.sections.length) return;
+
+    const newSections = [...newsletter.sections];
+    const [movedSection] = newSections.splice(index, 1);
+    newSections.splice(newIndex, 0, movedSection);
+
+    setNewsletter({ ...newsletter, sections: newSections });
+  };
+
   return (
     <div className="grid grid-cols-[250px_1fr_1fr] h-screen">
       <Sidebar
@@ -68,6 +91,8 @@ export default function NewsletterEditor() {
         selectedId={selectedId}
         onSelect={setSelectedId}
         onAdd={addSection}
+        moveSection={moveSection}
+        removeSection={removeSection}
       />
       <div className="p-4 overflow-y-auto border-r">
         {selectedId ? (
