@@ -128,12 +128,20 @@ function renderSection(section: Section): string {
     case "text":
       return `
         <div style="width:100%;">
-          <h2 style="text-align:center;font-size:24px;margin:0;border-bottom:1px solid #000000;padding:5px 20px;">
+          <h2 style="text-align:center;font-size:24px;margin:0;${
+            section.body || section.cta?.href
+              ? `border-bottom:1px solid #000000;`
+              : ""
+          }padding:5px 20px;">
             <b>${section.heading}</b>
-          </h2>
+          </h2>${
+            section.body || section.cta?.href
+              ? `
           <div style="margin:15px 30px;font-size:12px;text-align:justify;">
             ${section.body}
-          </div>
+          </div>`
+              : ""
+          }
           ${renderCta(section.cta)}
         </div>`;
     case "workshops":
@@ -147,6 +155,8 @@ function renderSection(section: Section): string {
           <div style="width:100%;height:200px;border-bottom:1px solid #000000;overflow:hidden;">
             <img src="${
               section.imageUrl
+                ? section.imageUrl
+                : "https://placehold.co/600x400?text=Obrázek+nenahrán"
             }" alt="" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div style="margin:15px 30px;font-size:12px;text-align:justify;">
@@ -167,14 +177,18 @@ function renderWorkshops(section: Extract<Section, { type: "workshops" }>) {
   for (let i = 0; i < workshops.length; i += 2) {
     const left = renderWorkshopBlock(workshops[i]);
     const right = workshops[i + 1]
-      ? renderWorkshopBlock(workshops[i + 1])
+      ? renderWorkshopBlock(workshops[i + 1], true)
       : renderEmptyWorkshopBlock();
     rows.push(`
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);width:100%;">
-        <div style="border-right:1px solid #000000;border-bottom:1px solid #000000;width:100%;">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);width:100%; ${
+        i >= workshops.length - 2 && section.cta?.href
+          ? "border-bottom:1px solid #000000;"
+          : ""
+      }">
+        <div style="border-right:1px solid #000000;width:100%;">
           ${left}
         </div>
-        <div style="border-right:1px solid #000000;border-bottom:1px solid #000000;width:100%;">
+        <div style="border-right:1px solid #000000;width:100%;">
           ${right}
         </div>
       </div>`);
@@ -182,7 +196,7 @@ function renderWorkshops(section: Extract<Section, { type: "workshops" }>) {
 
   return `
     <div style="width:100%;">
-      <h2 style="text-align:center;font-size:24px;margin:0;border-top:1px solid #000000;border-bottom:1px solid #000000;padding:5px 20px;">
+      <h2 style="text-align:center;font-size:24px;margin:0;padding:5px 20px;">
         <b>${section.heading}</b>
       </h2>
       ${rows.join("\n")}
@@ -190,16 +204,23 @@ function renderWorkshops(section: Extract<Section, { type: "workshops" }>) {
     </div>`;
 }
 
-function renderWorkshopBlock(block: {
-  id: string;
-  place: facilityType;
-  title: string;
-  description: string;
-  time: string;
-}) {
+function renderWorkshopBlock(
+  block: {
+    id: string;
+    place: facilityType;
+    title: string;
+    description: string;
+    time: string;
+  },
+  isRight = false
+) {
   return `
-    <div style="width:100%;">
-      <div style="font-size:12px;width:100%;border-bottom:1px solid #000000;background-color:${block.place.colorBg};color:white;text-align:center;">
+    <div style="width:100%;border-top:1px solid #000000">
+      <div style="font-size:12px;width:100%;border-bottom:1px solid #000000;background-color:${
+        block.place.colorBg
+      };color:white;text-align:center;${
+    isRight ? "border-left:1px solid #000000;width:calc(100% - 1px);" : ""
+  }">
         ${block.place.name}
       </div>
 
@@ -212,7 +233,11 @@ function renderWorkshopBlock(block: {
 }
 
 function renderEmptyWorkshopBlock() {
-  return `<div style="width:100%;min-height:100px;">&nbsp;</div>`;
+  return `<div style="width:100%;min-height:100px;border-top:1px solid #000000">
+            <div style="font-size:12px;width:100%;border-bottom:1px solid #000000;border-left:1px solid #000000;background-color:transparent;color:white;text-align:center;">
+               &nbsp;
+            </div>
+          </div>`;
 }
 
 /** CTA button */

@@ -30,7 +30,7 @@ export default function WorkshopsEditorForm({
   const addWorkshop = () => {
     const newWorkshop = {
       id: uuid(),
-      place: facilities[4],
+      place: facilities[0],
       title: "Nový workshop",
       description: "",
       time: "",
@@ -56,7 +56,7 @@ export default function WorkshopsEditorForm({
       {/* Workshops */}
       {section.workshops.map((workshop) => (
         <div key={workshop.id} className="border rounded p-3 space-y-2">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center gap-2">
             <Input
               value={workshop.title}
               onChange={(e) =>
@@ -65,13 +65,12 @@ export default function WorkshopsEditorForm({
               placeholder="Název workshopu"
             />
 
-            <Button
-              variant="destructive"
-              size="sm"
+            <a
+              className="bg-[var(--sos)] text-white px-4 py-2 rounded-md hover:bg-red-700 cursor-pointer text-sm font-bold"
               onClick={() => removeWorkshop(workshop.id)}
             >
-              Smazat
-            </Button>
+              <div>Smazat</div>
+            </a>
           </div>
 
           <div className="w-full">
@@ -81,7 +80,7 @@ export default function WorkshopsEditorForm({
                   place: facilities[parseInt(e.target.value)],
                 })
               }
-              className="border-2 px-6 py-1 mb-2"
+              className={`border-1 px-3 py-2 mb-2 rounded-md w-full text-sm`}
             >
               {facilities.map((facility, index) => (
                 <option value={index} key={facility.name}>
