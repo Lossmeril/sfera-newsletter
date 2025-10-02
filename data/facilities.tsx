@@ -4,6 +4,8 @@ export type facilityType = {
   nameEn: string;
 
   colorBg: string; // now storing the hex directly
+
+  elementPrefix?: string; // for elements like "H1", "C6H12O6", etc.
 };
 
 export const dilnaTextilu: facilityType = {
@@ -11,6 +13,8 @@ export const dilnaTextilu: facilityType = {
   name: "Dílna Textilu",
   nameEn: "Textiles Workshop",
   colorBg: "#ffcb04", // --textil
+
+  elementPrefix: "Textil",
 };
 
 export const dilnaGrafiky: facilityType = {
@@ -18,6 +22,8 @@ export const dilnaGrafiky: facilityType = {
   name: "Dílna Grafiky",
   nameEn: "Graphics Workshop",
   colorBg: "#f7941d", // --grafika
+
+  elementPrefix: "Grafika",
 };
 
 export const dilnaDreva: facilityType = {
@@ -25,6 +31,8 @@ export const dilnaDreva: facilityType = {
   name: "Dílna Dřeva",
   nameEn: "Wood Workshop",
   colorBg: "#7e5228", // --drevo
+
+  elementPrefix: "Dřevo",
 };
 
 export const dilnaKovu: facilityType = {
@@ -32,6 +40,8 @@ export const dilnaKovu: facilityType = {
   name: "Dílna Kovu/Elektra",
   nameEn: "Metal/Electric Workshop",
   colorBg: "#afca0b", // --kov
+
+  elementPrefix: "Kov_Elektro",
 };
 
 export const laboratorITVR: facilityType = {
@@ -39,6 +49,8 @@ export const laboratorITVR: facilityType = {
   name: "Laboratoř IT/VR",
   nameEn: "Computer Science/VR Lab",
   colorBg: "#83d0f5", // --it
+
+  elementPrefix: "IT_VR",
 };
 
 export const laboratorFyziky: facilityType = {
@@ -46,6 +58,8 @@ export const laboratorFyziky: facilityType = {
   name: "Laboratoř Fyziky",
   nameEn: "Physics Lab",
   colorBg: "#ec619f", // --fyzika
+
+  elementPrefix: "Fyzika",
 };
 
 export const laboratorChemie: facilityType = {
@@ -53,6 +67,8 @@ export const laboratorChemie: facilityType = {
   name: "Laboratoř Chemie",
   nameEn: "Chemistry Lab",
   colorBg: "#6859a3", // --chemie
+
+  elementPrefix: "Chemie",
 };
 
 export const laboratorPrirodopisu: facilityType = {
@@ -60,6 +76,8 @@ export const laboratorPrirodopisu: facilityType = {
   name: "Laboratoř Přírodopisu",
   nameEn: "Biology Lab",
   colorBg: "#004f9f", // --prirodopis
+
+  elementPrefix: "Prirodopis",
 };
 
 export const sferickeHriste: facilityType = {
@@ -67,6 +85,8 @@ export const sferickeHriste: facilityType = {
   name: "Sférické Hřiště",
   nameEn: "Spherical Playground",
   colorBg: "#3fa535", // --hriste
+
+  elementPrefix: "Hřiště",
 };
 
 export const scienceOnSphere: facilityType = {
@@ -74,6 +94,8 @@ export const scienceOnSphere: facilityType = {
   name: "Sál Science on a Sphere",
   nameEn: "Science on a Sphere Room",
   colorBg: "#e74011", // --sos
+
+  elementPrefix: "SOS",
 };
 
 export const primestskyTabor: facilityType = {

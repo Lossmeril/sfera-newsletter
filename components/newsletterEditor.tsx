@@ -7,6 +7,8 @@ import Sidebar from "./sidebar";
 import SectionEditor from "./sectionEditor";
 import PreviewPane from "./previewPane";
 import { v4 as uuid } from "uuid";
+import { facilities } from "@/data/facilities";
+import GlobalEditorForm from "./editors/globalEditor";
 
 const initialNewsletter: Newsletter = {
   id: uuid(),
@@ -14,11 +16,53 @@ const initialNewsletter: Newsletter = {
   issueTitle: "Sférický newsletter",
   issueDate: "Říjen 2025",
   sections: [],
+  elements: [
+    { elementSet: facilities[1], elementNo: 1, bgColor: "#fffa9e" },
+    { elementSet: facilities[1], elementNo: 2, bgColor: "#ffffff" },
+    { elementSet: facilities[1], elementNo: 10, bgColor: "#ff0000" },
+    { elementSet: facilities[1], elementNo: 4, bgColor: "#ffffff" },
+  ],
 };
 
 export default function NewsletterEditor() {
   const [newsletter, setNewsletter] = useState<Newsletter>(initialNewsletter);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const handleDownload = () => {
+    const json = JSON.stringify(newsletter, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${newsletter.issueTitle}.sferanewsletter`; // 👈 custom extension
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Upload & validate
+  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Quick validation by extension
+    if (!file.name.endsWith(".sferanewsletter")) {
+      alert("Neplatný soubor. Očekáván soubor s příponou .sferanewsletter");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+        setNewsletter(json);
+      } catch (err) {
+        console.error("Neplatný soubor", err);
+        alert("Soubor není platný.");
+      }
+    };
+    reader.readAsText(file);
+  };
 
   const addSection = (type: Section["type"]) => {
     const newSection: Section =
@@ -93,18 +137,25 @@ export default function NewsletterEditor() {
         onAdd={addSection}
         moveSection={moveSection}
         removeSection={removeSection}
+        newsletter={newsletter}
+        onChange={(patch) => setNewsletter((prev) => ({ ...prev, ...patch }))}
+        onDownload={handleDownload}
+        onUpload={handleUpload}
       />
-      <div className="p-4 overflow-y-auto border-r">
+      <div className="px-4 py-2 overflow-y-auto border-r">
+        <h2 className="font-bold mb-2">Editovat sekci</h2>
         {selectedId ? (
           <SectionEditor
             section={newsletter.sections.find((s) => s.id === selectedId)!}
             onChange={(patch) => updateSection(selectedId, patch)}
           />
         ) : (
-          <p className="text-gray-500">
-            V newsletteru zatím není žádná sekce. Přidejte nějakou, abyste ji
-            mohli upravovat :)
-          </p>
+          <GlobalEditorForm
+            newsletter={newsletter}
+            onChange={(patch) =>
+              setNewsletter((prev) => ({ ...prev, ...patch }))
+            }
+          />
         )}
       </div>
       <PreviewPane newsletter={newsletter} />
