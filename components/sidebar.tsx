@@ -9,7 +9,6 @@ import { IoEarth } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import { FaFolderOpen } from "react-icons/fa6";
 import { Input } from "./ui/input";
-import { on } from "events";
 
 type Props = {
   sections: Section[];
@@ -116,7 +115,7 @@ export default function Sidebar({
               ) : s.type === "workshops" ? (
                 <CgCalendarDates size={20} />
               ) : s.type === "imageText" ? (
-                <FaRegImage size={20} />
+                <FaRegImage size={15} /> 
               ) : (
                 "Unknown"
               )}

@@ -29,12 +29,12 @@ Poskytuje webové rozhraní, ve kterém lze sestavovat newslettery z připraven�
 ---
 
 ## 📌 Plánovaný vývoj
-- [ ] Změna názvu, data newsletteru
+- [X] Změna názvu, data newsletteru
 - [ ] Změna grafických prvků
 - [ ] Možnost vkládání data akcí
 - [ ] EmDash copy button
 - [ ] Validace dat a časů podle grafického manuálu
 - [ ] Validace data akcí oproti současnému času
-- [ ] Export do JSON formátu a jeho načtení
+- [X] Export do JSON formátu a jeho načtení
 - [ ] Napojení na OAuth Office 365
 - [ ] Načítání maillistu z .csv

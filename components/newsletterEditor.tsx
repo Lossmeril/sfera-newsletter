@@ -7,7 +7,6 @@ import Sidebar from "./sidebar";
 import SectionEditor from "./sectionEditor";
 import PreviewPane from "./previewPane";
 import { v4 as uuid } from "uuid";
-import { facilities } from "@/data/facilities";
 import GlobalEditorForm from "./editors/globalEditor";
 
 const initialNewsletter: Newsletter = {
@@ -17,10 +16,26 @@ const initialNewsletter: Newsletter = {
   issueDate: "Říjen 2025",
   sections: [],
   elements: [
-    { elementSet: facilities[1], elementNo: 1, bgColor: "#fffa9e" },
-    { elementSet: facilities[1], elementNo: 2, bgColor: "#ffffff" },
-    { elementSet: facilities[1], elementNo: 10, bgColor: "#ff0000" },
-    { elementSet: facilities[1], elementNo: 4, bgColor: "#ffffff" },
+    {
+      image: "https://branding.sferagrafika.eu/assets/SOS_motiv1_high.png",
+      bgColor: "#fac5aa",
+    },
+    {
+      image:
+        "https://branding.sferagrafika.eu/assets/Přírodopis_motiv3_high.png",
+      bgColor: "#fffa9e",
+    },
+    {
+      image: "https://branding.sferagrafika.eu/assets/Hřiště_motiv2_high.png",
+      bgColor: "#e1eebf",
+    },
+    {
+      image: "https://branding.sferagrafika.eu/assets/Fyzika_motiv5_high.png",
+      bgColor: "",
+    },
+    { image: "", bgColor: "" },
+    { image: "", bgColor: "" },
+    { image: "", bgColor: "" },
   ],
 };
 
@@ -35,7 +50,7 @@ export default function NewsletterEditor() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${newsletter.issueTitle}.sferanewsletter`; // 👈 custom extension
+    a.download = `${newsletter.issueTitle}.sferanewsletter`;
     a.click();
     URL.revokeObjectURL(url);
   };

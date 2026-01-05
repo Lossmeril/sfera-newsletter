@@ -6,7 +6,7 @@ export type Newsletter = {
   subject: string;
   issueTitle: string;
   issueDate: string;
-  elements: { elementSet: facilityType; elementNo: number; bgColor: string }[];
+  elements: { image: string; bgColor: string }[];
   sections: Section[];
 };
 

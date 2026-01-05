@@ -1,51 +1,51 @@
 export type Color = {
   name: string;
-  cssVar: string;
+  color: string;
 };
 
 export const accents: Color[] = [
   {
-    cssVar: "var(--white)",
+    color: "#ffffff",
     name: "Bílá",
   },
   {
-    cssVar: "var(--accent-pink)",
+    color: "#f7cadf",
     name: "Růžová",
   },
   {
-    cssVar: "var(--accent-red)",
+    color: "#fac5aa",
     name: "Červená",
   },
   {
-    cssVar: "var(--accent-orange)",
+    color: "#fedbb3",
     name: "Oranžová",
   },
   {
-    cssVar: "var(--accent-yellow)",
+    color: "#fffa9e",
     name: "Žlutá",
   },
   {
-    cssVar: "var(--accent-lime)",
+    color: "#e1eebf",
     name: "Zelinkavá",
   },
   {
-    cssVar: "var(--accent-green)",
+    color: "#b7dca9",
     name: "Zelená",
   },
   {
-    cssVar: "var(--accent-blue)",
+    color: "#8dd5f8",
     name: "Modrá",
   },
   {
-    cssVar: "var(--accent-purple)",
+    color: "#a2adcd",
     name: "Fialová",
   },
   {
-    cssVar: "var(--accent-brown)",
+    color: "#c2b5aa",
     name: "Hnědá",
   },
   {
-    cssVar: "var(--accent-gray)",
+    color: "#cacaca",
     name: "Šedá",
   },
 ];
